@@ -22,7 +22,7 @@ def add_rp_command(app):
             conn.commit()
             msg.edit(f"✅ RP-команда `{command}` успешно добавлена!")
         except sqlite3.IntegrityError:
-            msg.edit("❌ Такая команда уже существует!")
+            pass
         finally:
             conn.close()
 
@@ -39,7 +39,7 @@ def delete_rp_command(app):
             if cursor.rowcount > 0:
                 msg.edit(f"✅ RP-команда `{command}` успешно удалена!")
             else:
-                msg.edit("❌ Команда не найдена!")
+                pass
         finally:
             conn.close()
 
@@ -54,8 +54,7 @@ def list_rp_commands(app):
             if commands:
                 text = "📜 **Список RP-команд:**\n" + "\n".join([f"- `{cmd}`: {desc}" for cmd, desc in commands])
             else:
-                text = "❌ RP-команды не найдены!"
-            msg.edit(text)
+                pass
         finally:
             conn.close()
 
